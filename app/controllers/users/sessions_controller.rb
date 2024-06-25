@@ -31,7 +31,8 @@ class Users::SessionsController < Devise::SessionsController
     private
   
     def generate_token(user)
-      JWT.encode({ user_id: user.id }, Rails.application.secrets.secret_key_base)
+      # at here initialy ENV['SECRET_KEY'] instead we are using Rails.application.secret_key_base
+      JWT.encode({ user_id: user.id }, ENV['SECRET_KEY'])
     end
   end
   
